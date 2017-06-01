@@ -16,6 +16,7 @@ fun main(args: Array<String>) {
 
     fun Request.qp(key: String): String = this.queryParams(key)
 
+    staticFiles.location("/public");
 
     path ("/persones") {
 
@@ -43,7 +44,7 @@ fun main(args: Array<String>) {
         }
 
         /**
-         * Afegeix una persona al repositori.
+         * Afegeix una persona al repositori amb paràmetres 'nom' i 'cognom'
          */
         post("/") { req, res ->
             res.status(201)
@@ -51,6 +52,10 @@ fun main(args: Array<String>) {
                     repositori.afegirPersona(nom = req.qp("nom"), cognom = req.qp("cognom")))
         }
 
+        /**
+        * Afegeix una persona a partir del JSON que s'ha rebut en el
+        * cos del missatge
+        */
         post("/add") { req, res ->
 
             try {

@@ -1,0 +1,80 @@
+html,
+body {
+  margin: 10;
+  padding: 0;
+}
+
+html {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body {
+  color: #515151;
+  background-color: #fff;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+
+#main {
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .5rem;
+  font-weight: bold;
+  line-height: 1.25;
+  color: #313131;
+  text-rendering: optimizeLegibility;
+}
+h1 {
+  font-size: 2rem;
+}
+
+a {
+  color: #268bd2;
+  text-decoration: none;
+}
+
+a strong {
+  color: inherit;
+}
+/* `:focus` is linked to `:hover` for basic accessibility */
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+pre {
+    border: 1px solid #cacaca;
+    line-height: 1.4em;
+    padding: 10px;
+    overflow: auto;
+    border-radius: 3px;
+    background-color: #fafafb;
+    margin: 2em 0;
+}
+
+.command-line {
+    background-color: #444;
+    color: #fff;
+    border-radius: 3px;
+    border: none;
+    position: relative;
+}
+
+code, pre {
+    font-size: 12px;
+}
+
+.field-name, code, pre {
+    font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
