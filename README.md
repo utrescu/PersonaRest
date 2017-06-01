@@ -49,14 +49,14 @@ Per exemple per obtenir la persona amb el codi '1' enviem (faig servir httpie)
 
 Si es demana un id que no existeix el resultat és un error:
 
-  $ http localhost:4567/persones/123456
-  HTTP/1.1 404 Not Found
-  Content-Type: application/json
-  Date: Thu, 01 Jun 2017 20:45:33 GMT
-  Server: Jetty(9.4.z-SNAPSHOT)
-  Transfer-Encoding: chunked
+      $ http localhost:4567/persones/123456
+      HTTP/1.1 404 Not Found
+      Content-Type: application/json
+      Date: Thu, 01 Jun 2017 20:45:33 GMT
+      Server: Jetty(9.4.z-SNAPSHOT)
+      Transfer-Encoding: chunked
 
-  {"error"="No existeix"}
+      {"error"="No existeix"}
 
 Obtenir les persones que tenen el mateix nom
 -------------------------------------------------
@@ -96,8 +96,8 @@ Afegir una persona al sistema
 
 Hi ha dues formes d'afegir una persona al sistema:
 
-    A través de paràmetres
-    Enviant un JSON en el cos del missatge
+1. A través de paràmetres
+2. Enviant un JSON en el cos del missatge
 
 ### Crear una persona amb paràmetres
 
