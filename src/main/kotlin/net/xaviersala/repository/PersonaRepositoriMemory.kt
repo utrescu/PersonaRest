@@ -20,7 +20,7 @@ class PersonaRepositoriMemory: PersonaRepositori{
             7 to Persona(id=7, nom="Esteve", cognom="Marti")
     )
 
-    var generaId: AtomicInteger = AtomicInteger(persones.size - 1)
+    var generaId: AtomicInteger = AtomicInteger(persones.keys.maxBy { it}!!)
 
     override fun getPersona(id: Int): Persona {
         if (!persones.containsKey(id)) {

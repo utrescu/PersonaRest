@@ -1,5 +1,6 @@
 package net.xaviersala
 
+import com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import net.xaviersala.repository.PersonaException
@@ -25,11 +26,12 @@ fun main(args: Array<String>) {
         /**
          * Obtenir una persona a partir del seu ID.
          */
-        get("/:id") { req, _ ->
+        get("/:id") { req, res ->
             try {
                 jacksonObjectMapper().writeValueAsString(repositori.getPersona(req.params("id").toInt()))
             }catch (e: PersonaException) {
-                "{error=${e.message}}"
+                res.status(404)
+                "{\"error\"=\"${e.message}\"}"
             }
         }
 
@@ -55,8 +57,12 @@ fun main(args: Array<String>) {
                 repositori.afegirPersonaBody(
                         jacksonObjectMapper().readValue(req.body())
                 )
+                res.status(201)
             } catch (e: PersonaException) {
-                "{error={$e.message}}"
+                "{\"error\"=\"${e.message}\"}"
+                res.status(404)
+            } catch (e: MissingKotlinParameterException) {
+                "{\"error\"=\"Invalid Name\"}"
             }
         }
 
