@@ -1,0 +1,8 @@
+.idea/
+RestPersona.iml
+target/
+.classpath
+.project
+.settings/
+*~
+
