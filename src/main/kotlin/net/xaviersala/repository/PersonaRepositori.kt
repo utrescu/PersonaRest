@@ -28,9 +28,9 @@ interface PersonaRepositori {
      * @param  Afegir una persona al repositori de dades
      * @Return OK
      */
-    fun afegirPersona(nom: String, cognom: String): Persona
+    fun afegirPersona(nom: String, cognom: String): Boolean
 
-    fun afegirPersonaBody(persona: Persona?): Persona
+    fun afegirPersonaBody(persona: Persona?): Boolean
 
     /**
      * Esborrar una persona

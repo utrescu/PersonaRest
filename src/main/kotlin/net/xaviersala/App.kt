@@ -5,6 +5,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import net.xaviersala.repository.PersonaException
 import net.xaviersala.repository.PersonaRepositori
+import net.xaviersala.repository.PersonaRepositoriJDBC
 import net.xaviersala.repository.PersonaRepositoriMemory
 import spark.Request
 import spark.Spark.*
@@ -12,7 +13,10 @@ import spark.Spark.*
 
 fun main(args: Array<String>) {
 
-    val repositori: PersonaRepositori = PersonaRepositoriMemory()
+    // val repositori: PersonaRepositori = PersonaRepositoriMemory()
+
+    // Per fer servir el repositori cal crear la taula Persones a la base de dades.
+    val repositori: PersonaRepositori = PersonaRepositoriJDBC("jdbc:mysql://localhost/persones", "root", "ies2010")
 
     fun Request.qp(key: String): String = this.queryParams(key)
 
@@ -48,8 +52,8 @@ fun main(args: Array<String>) {
          */
         post("/") { req, res ->
             res.status(201)
-            jacksonObjectMapper().writeValueAsString(
-                    repositori.afegirPersona(nom = req.qp("nom"), cognom = req.qp("cognom")))
+            repositori.afegirPersona(nom = req.qp("nom"), cognom = req.qp("cognom"))
+            "{\"result\":\"OK\"}"
         }
 
         /**
@@ -59,15 +63,18 @@ fun main(args: Array<String>) {
         post("/add") { req, res ->
 
             try {
-                repositori.afegirPersonaBody(
+                val p = repositori.afegirPersonaBody(
                         jacksonObjectMapper().readValue(req.body())
                 )
                 res.status(201)
+                "{\"result\":\"OK\"}"
             } catch (e: PersonaException) {
                 "{\"error\"=\"${e.message}\"}"
                 res.status(404)
-            } catch (e: MissingKotlinParameterException) {
+            } catch (e: MissingKotlinParameterException ) {
                 "{\"error\"=\"Invalid Name\"}"
+            } catch (e: NumberFormatException) {
+                "{\"error\"=\"Invalid Value\"}"
             }
         }
 
@@ -77,7 +84,7 @@ fun main(args: Array<String>) {
         delete("/:id") { req, res ->
             repositori.eliminarPersona(req.params("id").toInt())
             res.status(204)
-            "{resultat=ok}"
+            "{\"result\":\"OK\"}"
         }
     }
 

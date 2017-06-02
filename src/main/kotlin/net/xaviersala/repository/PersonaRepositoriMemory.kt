@@ -34,15 +34,15 @@ class PersonaRepositoriMemory: PersonaRepositori{
         return persones.values.filter { it.nom == nom }.map { it }
     }
 
-    override fun afegirPersona(nom: String, cognom: String): Persona {
+    override fun afegirPersona(nom: String, cognom: String): Boolean {
         val nouId = generaId.incrementAndGet();
         persones.put(nouId, Persona(id=nouId, nom=nom, cognom = cognom))
-        return persones[nouId]!!
+        return true
     }
 
-    override fun afegirPersonaBody(persona: Persona?): Persona {
+    override fun afegirPersonaBody(persona: Persona?): Boolean {
         if (persona!= null) {
-            return afegirPersona(persona.nom, persona.cognom)
+            return true
         }
         throw PersonaException("Falten dades per entrar una persona")
     }
