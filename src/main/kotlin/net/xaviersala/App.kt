@@ -13,10 +13,10 @@ import spark.Spark.*
 
 fun main(args: Array<String>) {
 
-    // val repositori: PersonaRepositori = PersonaRepositoriMemory()
+    val repositori: PersonaRepositori = PersonaRepositoriMemory()
 
     // Per fer servir el repositori cal crear la taula Persones a la base de dades.
-    val repositori: PersonaRepositori = PersonaRepositoriJDBC("jdbc:mysql://localhost/persones", "root", "ies2010")
+    // val repositori: PersonaRepositori = PersonaRepositoriJDBC("jdbc:mysql://localhost/persones", "root", "ies2010")
 
     fun Request.qp(key: String): String = this.queryParams(key)
 
