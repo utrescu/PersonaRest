@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.version>1.1.2-4</kotlin.version>
         <junit.version>4.12</junit.version>
-        <spark-version>2.6.0</spark-version>
+        <spark-version>2.7.2</spark-version>
         <main.class>net.xaviersala.AppKt</main.class>
     </properties>
 
